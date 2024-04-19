@@ -1,4 +1,5 @@
-﻿using PaymentContext.Shared.ValueObjects;
+﻿using Flunt.Validations;
+using PaymentContext.Shared.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,12 @@ namespace PaymentContext.Domain.ValueObjects
             FirstName = firstName;
             LastName = lastName;
 
-            if (string.IsNullOrEmpty(FirstName))
-                AddNotification("Name.FirstName", "First name is required");
+            AddNotifications(new Contract<Name>()
+                .Requires()
+                .IsGreaterThan(FirstName, 3, "Name.FirstName", "O nome deve conter pelo menos 3 caracteres")
+                .IsGreaterThan(LastName, 3, "Name.LastName", "O sobrenome deve conter pelo menos 3 caracteres")
+                .IsLowerThan(FirstName, 40, "Name.FirstName", "O nome deve conter no maximo 40 caracteres")
+            );
         }
 
         public string FirstName { get; private set; }
