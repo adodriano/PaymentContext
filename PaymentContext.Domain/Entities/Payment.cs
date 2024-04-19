@@ -1,8 +1,10 @@
-﻿namespace PaymentContext.Domain;
+﻿using PaymentContext.Domain.ValueObjects;
+
+namespace PaymentContext.Domain;
 
 public abstract class Payment
 {
-    protected Payment(DateTime paidDate, DateTime expireDate, decimal total, decimal totalPaid, string payer, string document, string andress, string email)
+    public Payment(DateTime paidDate, DateTime expireDate, decimal total, decimal totalPaid, string payer, Document document, Address andress, Email email)
     {
         Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10).ToUpper();
         PaidDate = paidDate;
@@ -21,8 +23,8 @@ public abstract class Payment
     public decimal Total { get; private set; }
     public decimal TotalPaid { get; private set; }
     public string Payer { get; private set; }
-    public string Document { get; private set; }
-    public string Andress { get; private set; }
-    public string Email { get; private set; }
+    public Document Document { get; private set; }
+    public Address Andress { get; private set; }
+    public Email Email { get; private set; }
 
 }
