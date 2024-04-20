@@ -83,6 +83,10 @@ namespace PaymentContext.Shared.Handlers
             // Agrupar as validações
             AddNotifications(name, document, email, address, student, subscription, payment);
 
+            // checar as notificações
+            if (IsValid == false)
+                return new CommandResult(false, "Não foi possível realizar sua assinatura");
+
             // salvar as informações
             _repository.CreateSubscription(student);
 
@@ -147,6 +151,10 @@ namespace PaymentContext.Shared.Handlers
 
             // Agrupar as validações
             AddNotifications(name, document, email, address, student, subscription, payment);
+
+            // checar as notificações
+            if (IsValid == false)
+                return new CommandResult(false, "Não foi possível realizar sua assinatura");
 
             // salvar as informações
             _repository.CreateSubscription(student);
@@ -213,6 +221,10 @@ namespace PaymentContext.Shared.Handlers
 
             // Agrupar as validações
             AddNotifications(name, document, email, address, student, subscription, payment);
+
+            // checar as notificações
+            if (IsValid == false)
+                return new CommandResult(false, "Não foi possível realizar sua assinatura");
 
             // salvar as informações
             _repository.CreateSubscription(student);
