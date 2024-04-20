@@ -6,7 +6,6 @@
         [TestMethod]
         public void ShouldReturnErrorWhenNameIsInvalid()
         {
-
             var command = new CreateBoletoSubscriptionCommand();
 
             command.FirstName = "";
@@ -15,10 +14,6 @@
 
             Assert.AreEqual(false, command.IsValid);
 
-
         }
-
-
-
     }
 }
